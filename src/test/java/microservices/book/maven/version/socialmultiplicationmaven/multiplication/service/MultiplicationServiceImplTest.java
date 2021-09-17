@@ -1,8 +1,6 @@
-package microservices.book.maven.version.socialmultiplicationmaven.service;
+package microservices.book.maven.version.socialmultiplicationmaven.multiplication.service;
 
 import microservices.book.maven.version.socialmultiplicationmaven.multiplication.domain.Multiplication;
-import microservices.book.maven.version.socialmultiplicationmaven.multiplication.service.MultiplicationServiceImpl;
-import microservices.book.maven.version.socialmultiplicationmaven.multiplication.service.RandomGeneratorService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

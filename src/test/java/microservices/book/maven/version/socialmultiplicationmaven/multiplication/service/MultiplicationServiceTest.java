@@ -1,18 +1,22 @@
-package microservices.book.maven.version.socialmultiplicationmaven.service;
+package microservices.book.maven.version.socialmultiplicationmaven.multiplication.service;
 
 import microservices.book.maven.version.socialmultiplicationmaven.multiplication.domain.Multiplication;
 import microservices.book.maven.version.socialmultiplicationmaven.multiplication.service.MultiplicationService;
 import microservices.book.maven.version.socialmultiplicationmaven.multiplication.service.RandomGeneratorService;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class MultiplicationServiceTest {
+
     @MockBean
     private RandomGeneratorService randomGeneratorService;
 
@@ -22,13 +26,8 @@ public class MultiplicationServiceTest {
     @Test
     public void createRandomMultiplicationTest()
     {
-        // given mocked randomGeneratorService returns 50 and 30
         given(randomGeneratorService.generateRandomFactor()).willReturn(50,30);
-
-        // when
         Multiplication multiplication = multiplicationService.createRandomMultiplication();
-
-        // Then
         assertThat(multiplication.getFactorA()).isEqualTo(50);
         assertThat(multiplication.getFactorB()).isEqualTo(30);
         assertThat(multiplication.getResult()).isEqualTo(1500);

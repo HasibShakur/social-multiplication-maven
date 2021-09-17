@@ -12,7 +12,7 @@ public class RandomGeneratorServiceImpl implements RandomGeneratorService{
 
     @Override
     public int generateRandomFactor() {
-        // here, max is exclusive but min is inclusive. Thats why we need to add 1s
+        // here, max is exclusive but min is inclusive. Thats why we need to add 1
         return new Random().nextInt((MAX_FACTOR -MIN_FACTOR) + 1) + MIN_FACTOR;
     }
 }
