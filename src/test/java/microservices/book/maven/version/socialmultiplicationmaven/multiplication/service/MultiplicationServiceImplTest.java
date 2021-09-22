@@ -1,6 +1,8 @@
 package microservices.book.maven.version.socialmultiplicationmaven.multiplication.service;
 
 import microservices.book.maven.version.socialmultiplicationmaven.multiplication.domain.Multiplication;
+import microservices.book.maven.version.socialmultiplicationmaven.multiplication.domain.MultiplicationResultAttempt;
+import microservices.book.maven.version.socialmultiplicationmaven.multiplication.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -31,6 +33,31 @@ public class MultiplicationServiceImplTest {
 
         assertThat(multiplication.getFactorA()).isEqualTo(50);
         assertThat(multiplication.getFactorB()).isEqualTo(30);
-        assertThat(multiplication.getResult()).isEqualTo(1500);
+        assertThat(multiplication.getFactorA()*multiplication.getFactorB()).isEqualTo(1500);
+    }
+
+    @Test
+    public void checkCorrectAttempt()
+    {
+        Multiplication multiplication = new Multiplication(50,60);
+        User user = new User("Jake Adams");
+        MultiplicationResultAttempt multiplicationResultAttempt = new MultiplicationResultAttempt(user, multiplication, 3000);
+
+        //when
+        boolean attempt = multiplicationServiceImpl.checkAttempt(multiplicationResultAttempt);
+
+        assertThat(attempt).isTrue();
+    }
+
+    @Test
+    public void checkWrongAttempt() {
+        Multiplication multiplication = new Multiplication(50, 60);
+        User user = new User("Jake Adams");
+        MultiplicationResultAttempt multiplicationResultAttempt = new MultiplicationResultAttempt(user, multiplication, 3010);
+
+        //when
+        boolean attempt = multiplicationServiceImpl.checkAttempt(multiplicationResultAttempt);
+
+        assertThat(attempt).isFalse();
     }
 }
