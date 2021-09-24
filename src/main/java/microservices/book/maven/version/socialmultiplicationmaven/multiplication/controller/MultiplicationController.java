@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/multiplications")
-public final class MultiplicationController {
+final class MultiplicationController {
     private final MultiplicationService multiplicationService;
 
     @Autowired
